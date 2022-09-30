@@ -1,6 +1,22 @@
 import time
 import os
 
+
+def inp():
+   tim = input('Enter the countdown time in MM:SS format') 
+   tim1 = tim2 = 0
+   if tim.__contains__(':'):
+     tim1 = int(tim.split(':')[0])
+     tim2 = int(tim.split(':')[1])
+   elif tim.isnumeric() == False:
+          print('\n Invalid input\n')
+          inp() 
+   else:
+     tim2 = int(tim)  
+   tim = tim1 + tim2
+   return tim , tim1 , tim2
+
+
 def countdown(tim, t1, t2):
     os.system('cls')
     while t1+t2 > 0:
@@ -21,13 +37,7 @@ def sound():
     winsound.PlaySound('SystemExclamation', winsound.SND_ALIAS)
 
 def main():
-   tim = input('Enter the countdown time in MM:SS format') 
-   tim1 = int(tim.split(':')[0])
-   tim2 = int(tim.split(':')[1])
-   tim = tim1 + tim2
-   if (tim1*60)+tim2 < 60:
-        tim2 = tim1
-        tim1 = 0 
+   tim,tim1,tim2 = inp()
    if input("\nEnable Sound(y/n)") == 'y' or 'Y':
         Sound = True
    else:
